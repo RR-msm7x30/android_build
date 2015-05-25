@@ -17,6 +17,7 @@ LOCAL_DISABLE_STRICT := \
 	camera.omap4 \
 	audio.primary.piranha \
 	camera.msm8084 \
+	hwcomposer.msm7x30 \
 	hwcomposer.msm8084 \
 	bionic \
 	libavutil \

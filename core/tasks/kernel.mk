@@ -153,7 +153,7 @@ endif
 #tobitege: default empty TARGET_TC_KERNEL:
 ifeq ($(TARGET_TC_KERNEL),)
   $(info   TARGET_TC_KERNEL DEFAULTED TO "4.9-sm"!)
-  TARGET_TC_KERNEL := 4.9-sm
+  TARGET_TC_KERNEL := 4.8
 endif
 ifneq ($(TARGET_KERNEL_CROSS_COMPILE_PREFIX),)
   TARGET_KERNEL_XPRE := true
