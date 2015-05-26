@@ -32,20 +32,18 @@ endif
 # Clang flags for all host or target rules
 CLANG_CONFIG_EXTRA_ASFLAGS :=
 CLANG_CONFIG_EXTRA_CFLAGS :=
-ifeq ($(RR_O3),true)
-CLANG_CONFIG_EXTRA_CPPFLAGS := -O3 -Qunused-arguments -Wno-unknown-warning-option -D__compiler_offsetof=__builtin_offsetof
-else
 CLANG_CONFIG_EXTRA_CPPFLAGS :=
-endif
 CLANG_CONFIG_EXTRA_LDFLAGS :=
 
-ifeq ($(RR_O3),true)
+# ArchiDroid
+include $(BUILD_SYSTEM)/archidroid.mk
+CLANG_CONFIG_EXTRA_CFLAGS += $(ARCHIDROID_CLANG_CFLAGS)
+CLANG_CONFIG_EXTRA_CPPFLAGS += $(ARCHIDROID_CLANG_CPPFLAGS)
+CLANG_CONFIG_EXTRA_LDFLAGS += $(ARCHIDROID_CLANG_LDFLAGS)
+
 CLANG_CONFIG_EXTRA_CFLAGS += \
-  -O3 -Qunused-arguments -Wno-unknown-warning-option -D__compiler_offsetof=__builtin_offsetof
-else
-CLANG_CONFIG_EXTRA_CFLAGS += \
-  -Qunused-arguments -Wno-unknown-warning-option -D__compiler_offsetof=__builtin_offsetof
-endif
+  -D__compiler_offsetof=__builtin_offsetof
+
 # Help catch common 32/64-bit errors.
 CLANG_CONFIG_EXTRA_CFLAGS += \
   -Werror=int-conversion
@@ -56,6 +54,7 @@ CLANG_CONFIG_EXTRA_CFLAGS += \
   -Wno-unused-command-line-argument
 
 CLANG_CONFIG_UNKNOWN_CFLAGS := \
+  $(ARCHIDROID_CLANG_UNKNOWN_FLAGS) \
   -funswitch-loops \
   -fno-tree-sra \
   -finline-limit=64 \
@@ -65,8 +64,7 @@ CLANG_CONFIG_UNKNOWN_CFLAGS := \
   -Wmaybe-uninitialized \
   -Wno-maybe-uninitialized \
   -Wno-error=maybe-uninitialized \
-  -fno-canonical-system-headers \
-  -mfpu=neon-vfpv4
+  -fno-canonical-system-headers
 
 # Clang flags for all host rules
 CLANG_CONFIG_HOST_EXTRA_ASFLAGS :=

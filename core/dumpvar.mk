@@ -67,7 +67,7 @@ HOST_OS_EXTRA:=$(shell python -c "import platform; print(platform.platform())")
 $(info ============================================)
 $(info   PLATFORM_VERSION_CODENAME=$(PLATFORM_VERSION_CODENAME))
 $(info   PLATFORM_VERSION=$(PLATFORM_VERSION))
-$(info   RR_VERSION=$(CM_VERSION))
+$(info   CM_VERSION=$(CM_VERSION))
 $(info   TARGET_PRODUCT=$(TARGET_PRODUCT))
 $(info   TARGET_BUILD_VARIANT=$(TARGET_BUILD_VARIANT))
 $(info   TARGET_BUILD_TYPE=$(TARGET_BUILD_TYPE))
@@ -75,53 +75,18 @@ $(info   TARGET_BUILD_APPS=$(TARGET_BUILD_APPS))
 $(info   TARGET_ARCH=$(TARGET_ARCH))
 $(info   TARGET_ARCH_VARIANT=$(TARGET_ARCH_VARIANT))
 $(info   TARGET_CPU_VARIANT=$(TARGET_CPU_VARIANT))
-ifdef TARGET_GCC_VERSION
-$(info   TARGET_GCC_VERSION=$(TARGET_GCC_VERSION))
-else
-$(info   TARGET_GCC_VERSION=4.8)
-endif
-$(info   TARGET_NDK_GCC_VERSION=$(TARGET_NDK_GCC_VERSION))
-ifdef TARGET_TC_KERNEL
-$(info   TARGET_TC_KERNEL=$(TARGET_TC_KERNEL))
-else
-$(info   TARGET_TC_KERNEL DEFAULTING TO "4.8"!)
-endif
-$(info   TARGET_TOOLS_PREFIX=$(TARGET_TOOLS_PREFIX))
-$(info   TARGET_TOOLCHAIN_ROOT=$(TARGET_TOOLCHAIN_ROOT))
-$(info   TARGET_CC=$($(combo_2nd_arch_prefix)TARGET_CC))
-$(info   BUILD_ID=$(BUILD_ID))
+$(info   TARGET_2ND_ARCH=$(TARGET_2ND_ARCH))
+$(info   TARGET_2ND_ARCH_VARIANT=$(TARGET_2ND_ARCH_VARIANT))
+$(info   TARGET_2ND_CPU_VARIANT=$(TARGET_2ND_CPU_VARIANT))
 $(info   HOST_ARCH=$(HOST_ARCH))
 $(info   HOST_OS=$(HOST_OS))
 $(info   HOST_OS_EXTRA=$(HOST_OS_EXTRA))
 $(info   HOST_BUILD_TYPE=$(HOST_BUILD_TYPE))
-$(info   HOST_CC=$(HOST_CC))
-$(info   HOST_OUT_EXECUTABLES=$(HOST_OUT_EXECUTABLES))
+$(info   BUILD_ID=$(BUILD_ID))
 $(info   OUT_DIR=$(OUT_DIR))
-
-ifdef RROPTI
-$(info   RROPTI=$(RROPTI))
-else
-$(info   RROPTI=false)
-endif
-ifdef RR_O3
-$(info   RR_O3=$(RR_O3))
-else
-$(info   RR_O3=false)
-endif
-ifeq (true,$(RR_GRAPHITE))
-$(info   RR_GRAPHITE=$(RR_GRAPHITE))
-else
-$(info   RR_GRAPHITE=false)
-endif
-ifdef RR_STRICT
-$(info   RR_STRICT=$(RR_STRICT))
-else
-$(info   RR_STRICT=false)
-endif
-ifdef RR_KRAIT
-$(info   RR_KRAIT=$(RR_KRAIT))
-else
-$(info   RR_KRAIT=false)
+ifeq ($(CYNGN_TARGET),true)
+$(info   CYNGN_TARGET=$(CYNGN_TARGET))
+$(info   CYNGN_FEATURES=$(CYNGN_FEATURES))
 endif
 $(info ============================================)
 endif
